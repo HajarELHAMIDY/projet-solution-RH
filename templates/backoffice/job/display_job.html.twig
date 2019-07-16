@@ -1,0 +1,125 @@
+{% extends '/backoffice/base.html.twig' %}
+{% block title %}List for Jobs{% endblock %}
+
+{% block body %}
+<div class="wrapper ">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{ asset('assets/img/sidebar-1.jpg')}}">
+      <div class="logo">
+        <a href="" class="simple-text logo-normal">
+         <span style="color:rgb(245, 157, 42) " >emplois</span> <span style="color:rgb(22, 211, 224)" >informatique</span>
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{{path('admin')}}">
+              <i class="material-icons">dashboard</i>
+              <p>Accueil</p>
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{path('job')}}">
+              <i class="material-icons">list</i>
+              <p>List des offres</p>
+            </a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="{{path('app_backend')}}">
+                <i class="material-icons">gavel</i>
+                <p>Application</p>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </div>
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success" role="alert">
+        {{message}}
+      </div>
+    {% endfor %}
+    {% for message in app.flashes('warning') %}
+    <div class="alert alert-warning" role="alert">
+        {{message}}
+      </div>
+    {% endfor %}
+    <br>
+    <a href="{{ path('job_add')}}" class="btn btn-success">Publier votre annonce</a>
+    <br>   <br>
+    <br>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title ">Table des offres</h4>
+        <p class="card-category"> Les offres d'emploi disponibles actuellement</p>
+      </div>
+     
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class=" text-primary">
+              <tr> 
+                <th scope="col">Id</th>
+                <th scope="col">Ville</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Description</th>
+                <th scope="col">Code</th>
+                <th scope="col">Date</th>
+                <th scope="col">Statut</th>
+                <th scope="col">Action 1</th>
+                <th scope="col">Action 2</th>
+              </tr></thead>
+            <tbody>
+                {% for job in jobs %}
+                <tr>
+                  <th scope="row">{{ job.id }}</th>
+                  <td> {{ job.city.name }}</td>
+                  <td>{{ job.title }}</td>
+                  <td>{{ job.description}}</td>
+                  <td>{{ job.code }}</td>
+                  <td>{{ job.createAt|date('d-m-Y') }}</td>
+                  <td>{% if job.statut%}{%if job.statut.id==1%}Passif{% else %} Actif{% endif %} {% endif %}</td>
+                  <td><a href="{{ path('job_edit',{id:job.id})}}" class="btn btn-info">Modifier</a></td>
+                  <td>
+                  
+                    <form action ="{{ path('job_delete',{id:job.id})}}" onsubmit="return confirm('Vous voulez vraiment supprimer votre enregistrement ? ')">
+                       
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ job.id)}}">
+                        <button class="btn btn-danger">Supprimer</button>
+                      </form>
+                  
+                </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<footer class="footer">
+    <div class="container-fluid">
+      <nav class="float-left">
+        <ul>
+          <li>
+            <a href="#">
+                <span style="color:rgb(245, 157, 42) " >emplois</span> <span style="color:rgb(22, 211, 224)" >informatique</span>
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+      <div class="copyright float-right">
+        &copy;
+        <script>
+          document.write(new Date().getFullYear())
+        </script>, Created by Hajar EL-HAMIDY <strong>(ENSET-M GLSID)</strong>
+       
+      </div>
+    </div>
+  </footer>
+  {% endblock %}

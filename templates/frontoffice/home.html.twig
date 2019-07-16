@@ -1,0 +1,183 @@
+{% extends '/frontoffice/base.html.twig' %}
+{% block title %}Home page{% endblock %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#" style="font-size: 20px"><span style="color:rgb(245, 157, 42) " >emplois</span> <span style="color:rgb(22, 211, 224)" >informatique</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+       
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div style="margin-left: 40%">
+          <ul class="navbar-nav mr-auto">
+              
+            <li class="nav-item active">
+              <a class="nav-link" href="{{path('home')}}" style="font-size: 20px">Home <span class="sr-only" >(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{path('jobs_index')}}" style="margin-left:50px;font-size: 20px" >Offres</a>
+            </li>
+           
+          
+          </ul>
+        </div>
+        
+        </div>
+      </nav>
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                  <img src="{{ asset('assets/p2.jpg')}}" class="d-block w-100" alt="1" style="width: 100%; height: 450px;"/>
+              </div>
+              <div class="carousel-item">
+                  <img src="{{ asset('assets/2.jpg')}}" class="d-block w-100" alt="1" style="width: 100%; height: 450px;"/>
+              </div>
+              <div class="carousel-item">
+                  <img src="{{ asset('assets/1.jpg')}}" class="d-block w-100" alt="1" style="width: 100%; height: 450px;"/>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+          
+         
+                  <br><br> <br>
+                  
+        
+
+         
+        
+  <div class="container"  >
+
+    <div class="row"> 
+     
+      <div class="col-xs-12 col-sm-8 col-lg-8" style="background-color:whitesmoke;border-radius: 20px; margin-left:-20px">
+        <div class="cadre shdw round">
+        
+        <div style="margin: 30px">
+          <br>
+            <h2>Bienvenue !!</h2>
+     <br>
+     <br>
+     <!-- ann-300 -->
+      <p class="lead">   <span style="color:rgb(245, 157, 42) " >emplois</span> <span style="color:rgb(22, 211, 224)" >informatique</span> le site web qui dispose à tous les informaticiens
+         l’opportunité de trouver  un emploi ou bien  de passer un stage,
+          Notre site est l’interface entre vous et les responsables  des 
+          ressources humains de toutes les sociétés de services et d’ingénierie  informatiques.<br> <br>
+           A partir de <span style="color:rgb(245, 157, 42) " >emplois</span> <span style="color:rgb(22, 211, 224)" >informatique</span> vous pouvez découvrir toutes les offres  disponibles dans toutes
+            les villes du Maroc.<br> <br>
+            Il suffit de voir la liste des offres ensuite remplissez les formulaires des l’offres 
+            d’emplois qui sont  compatibles à votre profile.<br> <br>
+        Visitez <span style="color:rgb(245, 157, 42) " >emplois</span> <span style="color:rgb(22, 211, 224)" >informatique</span>  et  profitez de ses services. 
+        </p>
+    
+  
+     
+      </div>
+     </div></div>
+      
+      <div class="col-xs-12 col-sm-4 col-lg-4" style="background-color:rgb(245, 157, 42);border-radius: 20px; margin-left:20px; ">
+        <div class="cadre  round">
+      <div class="mm">
+          <div class="container" style="margin-right: 40px;margin-top: 30px;">
+              <h3>Offres les plus récents</h3> 
+              <br> <br>
+              {% for job in jobs %}
+              
+              <div class="row">
+                    <div class="col-sm-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">
+                            {{ job.title }} </h5>
+                        <p class="card-text">{{ job.description}}</p>
+                        <a href="{{ path('detail_job',{id:job.id})}}" class="btn btn-info">Découvrire</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <br>
+  
+      
+        {% endfor %}
+    
+    </div>
+      </div> <!-- /col droite -->
+      </div>
+      </div>
+    </div>
+    </div>
+    <br><br><br>
+    <br>  <br>  <br>
+    <footer style="background-color: rgb(33, 40, 56); height: 300px; width:100%;border-top-left-radius: 8px;border-top-right-radius: 8px;" >
+     
+        <div class="row">
+           
+           <div class="col__xs--6 col__sm--6 col__md--3" style="margin-left:50px;">
+              <h5 class="foooter__title" style="color: whitesmoke;padding-left: 40px;padding-top: 40px;">Entreprises(SSII)</h5>
+              <ul>
+                <li><a href="https://www.ibm.com"><span style="color:rgb(211, 206, 206)">IBM</span></a></li>
+                <li><a href="https://www.atos.net/fr" ><span style="color:rgb(211, 206, 206)">Atos</span></a></li>
+                <li><a href="https://www.sqli.com/authors" ><span style="color:rgb(211, 206, 206)">SQLI</span></a></li>
+                <li><a href="https://www.mobiblanc.com" ><span style="color:rgb(211, 206, 206)">MobiBlanc</span></a></li>
+              
+            
+              </ul>
+            </div>
+            <div class="col__xs--6 col__sm--6 col__md--3" style="margin-left:50px;;padding-left: 50px">
+                <p class="foooter__title" style="color: whitesmoke;padding-top: 60px;"></p>
+                <ul>
+                  <li><a  href="https://www.capgemini.com"><span style="color:rgb(211, 206, 206)">Capgimini</span></a></li>
+                  <li><a  href="https://www.idmaj.ma"><span style="color:rgb(211, 206, 206)">Technologie</span> </a></li>
+                  <li><a  href="https://www.mattelicom.com"><span style="color:rgb(211, 206, 206)">Mattelicom</span></a></li>
+                  <li><a  href="https://www.oriensys.ma"><span style="color:rgb(211, 206, 206)">Oriensys Service</span></a></li>
+      
+      
+              
+                </ul>
+              </div>
+              <div class="col__xs--6 col__sm--6 col__md--3" style="margin-left:50px;;padding-left: 50px">
+                  <p class="foooter__title" style="color: whitesmoke;padding-top: 60px;"></p>
+                  <ul>
+                    <li><a  href="https://www.admiral.ma"><span style="color:rgb(211, 206, 206)">Admiral</span></a></li>
+                    <li><a  href="https://www.collabsys.ma"><span style="color:rgb(211, 206, 206)">Collabsys</span></a></li>
+                    <li><a  href="https://www.webin.ma"><span style="color:rgb(211, 206, 206)">Webin</span ></a></li>
+                    <li><a  href="https://www.benkdigital.com"><span style="color:rgb(211, 206, 206)">Benkdigital</span></a></li>
+        
+        
+                
+                  </ul>
+                </div>
+          
+         
+          </div>
+          <br><br>
+            <div  style="color: rgb(226, 225, 225);background-color: rgb(33, 40, 56);margin-top: 40px">
+              &copy;
+              <script>
+                document.write(new Date().getFullYear())
+              </script>, Created by Hajar EL-HAMIDY <strong>(ENSET-M GLSID)</strong>
+             
+            </div>
+         
+        </footer>
+  <!-- <div> <br> <br></div> -->
+  {% endblock %}

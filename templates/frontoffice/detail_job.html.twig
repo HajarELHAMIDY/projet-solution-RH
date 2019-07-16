@@ -1,0 +1,141 @@
+{% extends '/frontoffice/base.html.twig' %}
+{% block title %}Job's detail{% endblock %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><span style="color:rgb(245, 157, 42) " >emplois</span> <span style="color:rgb(22, 211, 224)" >informatique</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+       
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div style="margin-left: 40%">
+          <ul class="navbar-nav mr-auto">
+              
+            <li class="nav-item">
+              <a class="nav-link" href="{{path('home')}}" style="font-size: 20px">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{path('jobs_index')}}" style="margin-left:50px;font-size: 20px" >Offres</a>
+            </li>
+           
+          
+          </ul>
+        </div>
+        
+        </div>
+      </nav>
+      <div class="container" style="background: whitesmoke;border-radius: 10px;margin-top: 50px" >
+
+          <div class="row"> 
+           
+            <div class="col-xs-12 col-sm-8 col-lg-8" style="background-color:whitesmoke;border-radius: 20px;padding-right:100px">
+            
+ 
+
+<div class="card" style="margin-left: 30px;margin-top: 100px"  >
+    
+        <div class="card-body" style="background-color:rgb(220, 229, 230);height: 400px">
+          <blockquote class="blockquote mb-0">
+                <h2 class="card-title;" ><center>{{ job.title }}</center></h2>
+                <hr>
+            <p>Vous souhaitez rejoindre une équipe dynamique, vous avez envie d'évoluer dans une structure jeune, 
+              si vous avez des conaissances sur :<br>
+              {{ job.description }} <br>
+              Alors postuler à ce poste maintenant !!<br><br></p>
+              <div class="row">
+                  <ul>
+                      
+                      <li> <strong>Ville</strong> : {{job.city.name}}<br></li>
+                      <li><strong>Publier le</strong>  : {{ job.createAt|date('d-m-Y') }}</li>
+              </ul>
+              <ul style="margin-left: 50px">
+                  <li> <strong>Code</strong> : {{job.code}}</li>
+              </ul>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+
+  </div>
+      
+      <div class="col-xs-12 col-sm-4 col-lg-4" style="background-color: rgb(179, 233, 236);border-radius: 20px; ">
+       
+      <div class="container" style="margin-right: 1px;margin-left: 1px" >
+        <div class="row mt-4">
+          <div class="row col-md-6 mx-auto">
+            <div class="card  rounded" style="background-color: rgb(179, 233, 236);margin-left: -100px;margin-right: -100px;margin-top: -10px;margin-bottom: 10px;">
+              <div class="container-fluid">
+                <h3 class="card-title text-default p-4"> <center>Le formulaire</center> </h3>
+                <div class="card-body mt-2 rounded">
+                  {{form(form)}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+    <br>  <br>  <br>
+    <br>  <br>  <br>
+    
+    <footer style="background-color: rgb(33, 40, 56); height: 300px; width:100%;border-top-left-radius: 8px;border-top-right-radius: 8px;" >
+     
+        <div class="row">
+           
+           <div class="col__xs--6 col__sm--6 col__md--3" style="margin-left:50px;">
+              <h5 class="foooter__title" style="color: whitesmoke;padding-left: 40px;padding-top: 40px;">Entreprises(SSII)</h5>
+              <ul>
+                <li><a href="https://www.ibm.com"><span style="color:rgb(211, 206, 206)">IBM</span></a></li>
+                <li><a href="https://www.atos.net/fr" ><span style="color:rgb(211, 206, 206)">Atos</span></a></li>
+                <li><a href="https://www.sqli.com/authors" ><span style="color:rgb(211, 206, 206)">SQLI</span></a></li>
+                <li><a href="https://www.mobiblanc.com" ><span style="color:rgb(211, 206, 206)">MobiBlanc</span></a></li>
+              
+            
+              </ul>
+            </div>
+            <div class="col__xs--6 col__sm--6 col__md--3" style="margin-left:50px;;padding-left: 50px">
+                <p class="foooter__title" style="color: whitesmoke;padding-top: 60px;"></p>
+                <ul>
+                  <li><a  href="https://www.capgemini.com"><span style="color:rgb(211, 206, 206)">Capgimini</span></a></li>
+                  <li><a  href="https://www.idmaj.ma"><span style="color:rgb(211, 206, 206)">Technologie</span> </a></li>
+                  <li><a  href="https://www.mattelicom.com"><span style="color:rgb(211, 206, 206)">Mattelicom</span></a></li>
+                  <li><a  href="https://www.oriensys.ma"><span style="color:rgb(211, 206, 206)">Oriensys Service</span></a></li>
+      
+      
+              
+                </ul>
+              </div>
+              <div class="col__xs--6 col__sm--6 col__md--3" style="margin-left:50px;;padding-left: 50px">
+                  <p class="foooter__title" style="color: whitesmoke;padding-top: 60px;"></p>
+                  <ul>
+                    <li><a  href="https://www.admiral.ma"><span style="color:rgb(211, 206, 206)">Admiral</span></a></li>
+                    <li><a  href="https://www.collabsys.ma"><span style="color:rgb(211, 206, 206)">Collabsys</span></a></li>
+                    <li><a  href="https://www.webin.ma"><span style="color:rgb(211, 206, 206)">Webin</span ></a></li>
+                    <li><a  href="https://www.benkdigital.com"><span style="color:rgb(211, 206, 206)">Benkdigital</span></a></li>
+        
+        
+                
+                  </ul>
+                </div>
+          
+         
+          </div>
+          <br><br>
+            <div  style="color: rgb(226, 225, 225);background-color: rgb(33, 40, 56);margin-top: 40px">
+              &copy;
+              <script>
+                document.write(new Date().getFullYear())
+              </script>, Created by Hajar EL-HAMIDY <strong>(ENSET-M GLSID)</strong>
+             
+            </div>
+         
+        </footer>
+{% endblock %}

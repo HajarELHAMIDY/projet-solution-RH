@@ -1,0 +1,72 @@
+{% extends '/backoffice/base.html.twig' %}
+{% block title %}Add application{% endblock %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+  <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{ asset('assets/img/sidebar-1.jpg')}}">
+          <div class="logo">
+            <a href="" class="simple-text logo-normal">
+              <span style="color:rgb(245, 157, 42) ">emplois</span> <span style="color:rgb(22, 211, 224)" >informatique 
+            </a>
+          </div>
+          <div class="sidebar-wrapper">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="{{path('admin')}}">
+                  <i class="material-icons">dashboard</i>
+                  <p>Accueil</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{path('job')}}">
+                  <i class="material-icons">list</i>
+                  <p>List des offres</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{{path('app_backend')}}">
+                    <i class="material-icons">gavel</i>
+                    <p>Application</p>
+                  </a>
+                </li>
+            </ul>
+          </div>
+        </div>
+          <div class="container">
+        <div class="row mt-4">
+          <div class="row col-md-6 mx-auto">
+            <div class="card bg-light rounded">
+              <div class="container-fluid">
+                <h3 class="card-title text-default p-4" style="color: black;"> <center>Insertion des informations</center></h3>
+                <div class="card-body mt-2 rounded">
+                  {{form(form)}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+<footer class="footer">
+    <div class="container-fluid">
+      <nav class="float-left">
+        <ul>
+          <li>
+            <a href="#">
+                <span style="color:rgb(245, 157, 42) " >emplois</span> <span style="color:rgb(22, 211, 224)" >informatique</span>
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+      <div class="copyright float-right">
+        &copy;
+        <script>
+          document.write(new Date().getFullYear())
+        </script>, Created by Hajar EL-HAMIDY <strong>(ENSET-M GLSID)</strong>
+       
+      </div>
+    </div>
+  </footer>
+
+ {% endblock %}

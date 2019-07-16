@@ -1,0 +1,124 @@
+{% extends '/backoffice/base.html.twig' %}
+{% block title %}List for Applications{% endblock %}
+
+{% block body %}
+
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{ asset('assets/img/sidebar-1.jpg')}}">
+      <div class="logo">
+        <a href="" class="simple-text logo-normal">
+            <span style="color:rgb(245, 157, 42) " >emplois</span> <span style="color:rgb(22, 211, 224)" >informatique</span>
+        </a>
+      </div>
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{{path('admin')}}">
+              <i class="material-icons">dashboard</i>
+              <p>Accueil</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{path('job')}}">
+              <i class="material-icons">list</i>
+              <p>List des offres</p>
+            </a>
+          </li>
+          <li class="nav-item active">
+              <a class="nav-link" href="{{path('app_backend')}}">
+                <i class="material-icons">gavel</i>
+                <p>Application </p>
+              </a>
+            </li>
+        </ul>
+      </div>
+    </div>
+    {% for message in app.flashes('success') %}
+    <div class="alert alert-success" role="alert">
+        {{message}}
+      </div>
+    {% endfor %}
+   
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+        <div class="card-header card-header-info">
+        <h4 class="card-title">Table des applications</h4>
+        <p class="card-category"> Les demandes des canditats et ses états</p>
+      </div>
+     
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+            <thead class="text-info">
+              <tr> 
+                <th scope="col">Id</th>
+                <th scope="col">Poste</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prénom</th>
+                <th scope="col">Statut</th>
+                <th scope="col"><center>Adresse mail</center></th>
+                <th scope="col"><center>Tel</center></th>
+                <th scope="col"><center>Adresse</center></th>
+                <th scope="col">Remarque</th>
+                <th scope="col">Date</th>
+                <th scope="col"><center>CV</center></th>
+                <th scope="col">Action 1</th>
+                <th scope="col">Action 2</th>
+              </tr></thead>
+            <tbody>
+                {% for app in application %}
+                <tr>
+                  <th scope="row">{{ app.id }}</th>
+                  <td> {{app.job.title }}</td>
+                  <td>{{ app.lastName }}</td>
+                  <td>{{ app.firstName}}</td>
+                  <td>{% if app.statut%}{%if app.statut.id==1%}Admis{% else %} Non-Admis{% endif %} {% endif %}</td>
+                  <td>{{ app.email}}</td>
+                  <td>{{ app.phone }}</td>
+                  <td>{{ app.address}}</td>
+                  <td>{{ app.Comment}}</td>
+                  <td>{{ app.createAt|date('d-m-Y') }}</td>
+                  <td>{% if app.cv %}<a href="{{ asset('uploads/')}}{{ app.cv}}" target="__blank"><button class="btn btn-info">  Voir le CV</button></a>{% endif %}</td>
+                  <td><a href="{{ path('app_complete',{id:app.id})}}" class="btn btn-warning">Completer</a></td>
+                  <td>
+                  <form action ="{{ path('app_delete',{id:app.id})}}" onsubmit="return confirm('Vous voulez vraiment supprimer votre enregistrement ? ')">
+                       
+                          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ app.id)}}">
+                          <button class="btn btn-danger">Supprimer</button>
+                        </form>
+                    
+                </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+    <div class="container-fluid">
+      <nav class="float-left">
+        <ul>
+          <li>
+            <a href="#">
+                <span style="color:rgb(245, 157, 42) " >emplois</span> <span style="color:rgb(22, 211, 224)" >informatique</span>
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+      <div class="copyright float-right">
+        &copy;
+        <script>
+          document.write(new Date().getFullYear())
+        </script>, Created by Hajar EL-HAMIDY <strong>(ENSET-M GLSID)</strong>
+       
+      </div>
+    </div>
+  </footer>
+
+
+  {% endblock %}
